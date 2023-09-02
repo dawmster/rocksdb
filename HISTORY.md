@@ -1,7 +1,11 @@
 # Rocksdb Change Log
 > NOTE: Entries for next release do not go here. Follow instructions in `unreleased_history/README.txt`
 
-## 8.6.1 (08/30/2023)
+## 8.6.1 (09/01/2023)
+### Bug Fixes
+* Fix a bug where if there is an error reading from offset 0 of a file from L1+ and that the file is not the first file in the sorted run, data can be lost in compaction and read/scan can return incorrect results.
+* Fix a bug where iterator may return incorrect result for DeleteRange() users if there was an error reading from a file.
+
 ### Public API Changes
 * `Options::compaction_readahead_size` 's default value is changed from 0 to 2MB.
 
