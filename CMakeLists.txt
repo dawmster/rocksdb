@@ -31,7 +31,7 @@
 # 2. mkdir build; cd build
 # 3. cmake ..
 # 4. make -j
-
+cmake_policy(SET CMP0077 NEW)
 cmake_minimum_required(VERSION 3.10)
 
 list(APPEND CMAKE_MODULE_PATH "${CMAKE_CURRENT_LIST_DIR}/cmake/modules/")
