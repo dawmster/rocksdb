@@ -117,22 +117,17 @@ if (WITH_LZ4)
     set(LZ4_LIB_RELEASE $ENV{LZ4_LIB_RELEASE})
   endif()
 
-#   find_package(lz4 REQUIRED)
-#   add_definitions(-DLZ4)
-#   list(APPEND THIRDPARTY_LIBS lz4::lz4)
-
   find_package(LZ4 CONFIG REQUIRED)
-  get_target_property(LZ4_LIB_RELEASE LZ4::LZ4 IMPORTED_LOCATION_RELEASE)
-  get_target_property(LZ4_LIB_DEBUG LZ4::LZ4 IMPORTED_LOCATION_DEBUG)
-  get_target_property(LZ4_INCLUDE_DIR LZ4::LZ4 INTERFACE_INCLUDE_DIRECTORIES)
-
+  get_target_property(LZ4_LIB_RELEASE lz4::lz4 IMPORTED_LOCATION_RELEASE)
+  get_target_property(LZ4_LIB_DEBUG lz4::lz4 IMPORTED_LOCATION_DEBUG)
+  get_target_property(LZ4_INCLUDE_DIR lz4::lz4 INTERFACE_INCLUDE_DIRECTORIES)
 
   set(LZ4_CXX_FLAGS -DLZ4)
   set(LZ4_LIBS debug ${LZ4_LIB_DEBUG} optimized ${LZ4_LIB_RELEASE})
 
   add_definitions(${LZ4_CXX_FLAGS})
   include_directories(${LZ4_INCLUDE})
-  set (THIRDPARTY_LIBS ${THIRDPARTY_LIBS} ${LZ4_LIBS}  lz4::lz4)
+  set (THIRDPARTY_LIBS ${THIRDPARTY_LIBS} ${LZ4_LIBS} lz4::lz4)
 else ()
   message(STATUS "LZ4 library is disabled")
 endif ()
