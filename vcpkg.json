@@ -1,0 +1,12 @@
+{
+    "$schema": "https://raw.githubusercontent.com/microsoft/vcpkg-tool/main/docs/vcpkg.schema.json",
+    "name": "rocksdb",
+    "supports": "x64",
+    "version": "8.5.4",
+    "dependencies": [
+      "zlib",
+      "lz4"
+    ],
+    "builtin-baseline": "b73601a4616c21923cfb6f3a5263a9788165efbd"
+  }
+  
