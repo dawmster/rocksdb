@@ -1,7 +1,7 @@
 cd build
 set BUILD_TYPE=Release
 
-"C:\Program Files\CMake\bin\cmake.exe" .. -DCMAKE_BUILD_TYPE=%BUILD_TYPE% -DCMAKE_TOOLCHAIN_FILE=c:/Users/dawms/vcpkg/scripts/buildsystems/vcpkg.cmake -DVCPKG_TARGET_TRIPLET=x64-windows^
+"C:\Program Files\CMake\bin\cmake.exe" .. -DCMAKE_BUILD_TYPE=%BUILD_TYPE% -DCMAKE_TOOLCHAIN_FILE=c:/vcpkg/scripts/buildsystems/vcpkg.cmake -DVCPKG_TARGET_TRIPLET=x64-windows^
     -DROCKSDB_BUILD_SHARED=OFF^
     -DWITH_ZLIB=ON^
     -DWITH_LZ4=OFF^
