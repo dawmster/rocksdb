@@ -120,9 +120,41 @@ else()
     set(WITH_JEMALLOC ON)
   else()
     if(WITH_JEMALLOC)
-      find_package(JeMalloc REQUIRED)
-      add_definitions(-DROCKSDB_JEMALLOC -DJEMALLOC_NO_DEMANGLE)
-      list(APPEND THIRDPARTY_LIBS JeMalloc::JeMalloc)
+
+            find_library(JEMALLOC_LIBRARY NAMES jemalloc libjemalloc)
+
+# Find the include directory
+find_path(JEMALLOC_INCLUDE_DIR
+    NAMES jemalloc/jemalloc.h
+    PATH_SUFFIXES include
+)
+
+
+# Extract the home directory from the library path
+if(JEMALLOC_LIBRARY)
+    get_filename_component(JEMALLOC_LIBRARY_DIR ${JEMALLOC_LIBRARY} DIRECTORY)
+    get_filename_component(JEMALLOC_HOME_DIR ${JEMALLOC_LIBRARY_DIR} DIRECTORY)
+endif()
+
+# Check if components were found and set variables
+if(JEMALLOC_LIBRARY AND JEMALLOC_INCLUDE_DIR)
+    set(JEMALLOC_FOUND TRUE)
+    message(STATUS "Found jemalloc:")
+    message(STATUS "  Home directory: ${JEMALLOC_HOME_DIR}")
+    message(STATUS "  Root directory: ${JEMALLOC_ROOT}")
+    message(STATUS "  Include directory: ${JEMALLOC_INCLUDE_DIR}")
+    message(STATUS "  LIB directory: ${JEMALLOC_LIBRARY_DIR}")
+    message(STATUS "  LIB file: ${JEMALLOC_LIBRARY}")
+else()
+    set(JEMALLOC_FOUND FALSE)
+    message(WARNING "jemalloc not found")
+endif()
+
+      # find_package(JeMalloc REQUIRED)
+      include_directories(${JEMALLOC_INCLUDE_DIR})
+
+      add_definitions(-DROCKSDB_JEMALLOC -DJEMALLOC_NO_DEMANGLE) #
+      list(APPEND THIRDPARTY_LIBS ${JEMALLOC_LIBRARY})
     endif()
   endif()
 
