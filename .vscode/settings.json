@@ -1,0 +1,21 @@
+{
+    "cmake.generator": "Xcode",
+    "cmake.configureArgs": [
+    "-DWITH_JEMALLOC=ON",
+            "-DWITH_JEMALLOC:BOOL=1",
+            "-DWITH_ZLIB:BOOL=1",
+            "-DWITH_SNAPPY:BOOL=0",
+            "-DROCKSDB_BUILD_SHARED:BOOL=0",
+            "-DWITH_GFLAGS:BOOL=0",
+            "-DWITH_CORE_TOOLS:BOOL=0",
+            "-DWITH_BENCHMARK_TOOLS:BOOL=0",
+            "-DWITH_TOOLS:BOOL=0",
+            "-DWITH_TESTS:BOOL=0",
+            "-DWITH_ALL_TESTS:BOOL=0",
+            "-DWITH_JNI:BOOL=0",
+            "-DCMAKE_TOOLCHAIN_FILE=/Users/mikolaj/axomem/vcpkg/scripts/buildsystems/vcpkg.cmake",
+            "-DFAIL_ON_WARNINGS=OFF"
+        ],
+ 
+
+    }
