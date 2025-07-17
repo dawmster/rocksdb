@@ -150,6 +150,33 @@ else()
     message(WARNING "jemalloc not found")
 endif()
 
+
+      #------- FROM THIRDPARTY JEMALLOC
+  
+      message(STATUS "JEMALLOC library is enabled")
+      set(JEMALLOC_CXX_FLAGS "-DROCKSDB_JEMALLOC -DJEMALLOC_EXPORT= -DJEMALLOC_NO_RENAME")
+      
+      if(DEFINED ENV{JEMALLOC_INCLUDE})
+        set(JEMALLOC_INCLUDE $ENV{JEMALLOC_INCLUDE})
+      endif()
+      
+      
+      set(JEMALLOC_LIB_DEBUG ${JEMALLOC_LIBRARY})
+      
+
+      
+      set(JEMALLOC_LIB_RELEASE ${JEMALLOC_LIBRARY})
+    
+
+      set(JEMALLOC_LIBS debug ${JEMALLOC_LIBRARY} optimized ${JEMALLOC_LIBRARY})
+
+      add_definitions(${JEMALLOC_CXX_FLAGS})
+
+      set (THIRDPARTY_LIBS ${THIRDPARTY_LIBS} ${JEMALLOC_LIBS})
+      # set (ARTIFACT_SUFFIX "_je")
+      #-------
+
+
       # find_package(JeMalloc REQUIRED)
       include_directories(${JEMALLOC_INCLUDE_DIR})
 
